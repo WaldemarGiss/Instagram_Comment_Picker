@@ -18,11 +18,11 @@ import (
 func main() {
 	router := gin.Default()
 
-	repository := repository.ProvideInstaPickerRepository()
+	instaCheckerRepository := repository.ProvideInstaPickerRepository()
 
-	service := service.ProvideInstaPickerService(repository)
+	instaCheckerService := service.ProvideInstaPickerService(instaCheckerRepository)
 
-	api.CreateRouter(router, service)
+	api.CreateRouter(router, instaCheckerService)
 
 	if err := router.Run("localhost:8080"); err != nil {
 		panic(err)
